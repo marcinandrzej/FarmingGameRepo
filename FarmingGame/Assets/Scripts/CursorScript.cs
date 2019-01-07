@@ -38,10 +38,14 @@ public class CursorScript : MonoBehaviour
 	void Start ()
     {
 
-	}
+    }
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void Update ()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            cursorState.SecondButtonClick();
+        }		
 	}
 }

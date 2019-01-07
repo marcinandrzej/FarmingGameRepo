@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class BuildingMenuScript : MonoBehaviour
 {
-    public GameObject farmButton;
-    public GameObject farmPrefab;
+    public GameObject buildPanel;
+    public GameObject[] buildingsPrefabs;
+    public Sprite[] buildingsSprites;
+
+    private GameObject[] buildButtons;
     // Use this for initialization
     void Start ()
     {
@@ -21,10 +24,19 @@ public class BuildingMenuScript : MonoBehaviour
 
     private void SetUp()
     {
-        farmButton.GetComponent<Button>().onClick.AddListener(delegate
+        buildButtons = GuiScript.instance.FillWithButtons(buildPanel, 3, buildingsSprites);
+
+        for (int i = 0; i < buildButtons.Length; i++)
         {
-            GameObject farm = Instantiate(farmPrefab, null);
-            CursorScript.instance.ChangeState(new CursorBuildState(), farm.GetComponent<BuildingScript>());
-        });
+            int x = i;
+            if (x < buildingsPrefabs.Length)
+            {
+                buildButtons[x].GetComponent<Button>().onClick.AddListener(delegate
+                {
+                GameObject building = Instantiate(buildingsPrefabs[x], null);
+                CursorScript.instance.ChangeState(new CursorBuildState(), building.GetComponent<BuildingScript>());
+                });
+            }
+        }
     }
 }

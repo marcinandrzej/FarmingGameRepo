@@ -9,6 +9,7 @@ public interface CursorStates
     void TileEnter(TileScript tile);
     void TileExit(TileScript tile);
     void TileClick(TileScript tile);
+    void SecondButtonClick();
 }
 
 public class CursorIdleState : CursorStates
@@ -37,6 +38,11 @@ public class CursorIdleState : CursorStates
     {
         tile.HighlightOnOff(false);
     }
+
+    public void SecondButtonClick()
+    {
+
+    }
 }
 
 public class CursorBuildState : CursorStates
@@ -50,7 +56,11 @@ public class CursorBuildState : CursorStates
 
     public void OnStateExit()
     {
-
+        if (building != null)
+        {
+            building.DestroyBuilding();
+            building = null;
+        }
     }
 
     public void TileClick(TileScript tile)
@@ -60,17 +70,36 @@ public class CursorBuildState : CursorStates
             TileManagerScript.instance.OcuppyTiles(building.gameObject, tile.X, tile.Z, building.sizeX, building.sizeZ);
             building.Build(tile.transform.position);
             building = null;
+            CursorScript.instance.ChangeState(new CursorIdleState(), null);
         }
     }
 
     public void TileEnter(TileScript tile)
     {
-        if(building != null)
+        if (building != null)
+        {
             building.Move(tile.transform.position);
+            if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ))
+            {
+                building.HighlightOnOff(false);
+            }
+            else
+            {
+                building.HighlightOnOff(true);
+            }
+        }
     }
 
     public void TileExit(TileScript tile)
     {
 
+    }
+
+    public void SecondButtonClick()
+    {
+        if (building != null)
+        {
+            building.Rotate();
+        }
     }
 }
