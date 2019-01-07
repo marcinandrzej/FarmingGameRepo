@@ -33,8 +33,8 @@ public class BuildingMenuScript : MonoBehaviour
             {
                 buildButtons[x].GetComponent<Button>().onClick.AddListener(delegate
                 {
-                GameObject building = Instantiate(buildingsPrefabs[x], null);
-                CursorScript.instance.ChangeState(new CursorBuildState(), building.GetComponent<BuildingScript>());
+                    GameObject building = Instantiate(buildingsPrefabs[x], null);
+                    CursorScript.instance.ChangeState(new CursorBuildState(), building.GetComponent<BuildingScript>());
                 });
             }
         }
