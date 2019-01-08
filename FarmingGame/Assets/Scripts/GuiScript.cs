@@ -77,7 +77,60 @@ public class GuiScript : MonoBehaviour
                 }
             }
         }
-
         return buttons;
+    }
+
+    public GameObject CreateImage(string name, Transform parent, Vector2 _sizeDelta, Vector2 _anchorMin, Vector2 _anchorMax,
+        Vector3 _localScale, Vector2 _pivot, Vector2 _anchoredPosition, Sprite _sprite, Image.Type type)
+    {
+        GameObject image = new GameObject(name);
+        image.transform.SetParent(parent);
+
+        image.AddComponent<RectTransform>();
+        image.AddComponent<Image>();
+
+        //Set RectTransform
+        image.GetComponent<RectTransform>().sizeDelta = _sizeDelta;
+        image.GetComponent<RectTransform>().anchorMin = _anchorMin;
+        image.GetComponent<RectTransform>().anchorMax = _anchorMax;
+        image.GetComponent<RectTransform>().localScale = _localScale;
+        image.GetComponent<RectTransform>().pivot = _pivot;
+        image.GetComponent<RectTransform>().anchoredPosition = _anchoredPosition;
+
+        //Set Image
+        image.GetComponent<Image>().sprite = _sprite;
+        image.GetComponent<Image>().type = type;
+        return image;
+    }
+
+    public GameObject CreateText(string name, Transform parent, Vector2 _sizeDelta, Vector2 _anchorMin, Vector2 _anchorMax,
+        Vector3 _localScale, Vector2 _pivot, Vector2 _anchoredPosition, string _text, Color32 _color,
+        bool _resizeTextForBestFit, Font _font, TextAnchor _textAnchor, FontStyle _fontStyle)
+    {
+        GameObject textObject = new GameObject(name);
+        textObject.transform.SetParent(parent);
+        textObject.AddComponent<RectTransform>();
+        textObject.AddComponent<Text>();
+
+        //Set RectTransform
+        textObject.GetComponent<RectTransform>().sizeDelta = _sizeDelta;
+        textObject.GetComponent<RectTransform>().anchorMin = _anchorMin;
+        textObject.GetComponent<RectTransform>().anchorMax = _anchorMax;
+        textObject.GetComponent<RectTransform>().localScale = _localScale;
+        textObject.GetComponent<RectTransform>().pivot = _pivot;
+        textObject.GetComponent<RectTransform>().anchoredPosition = _anchoredPosition;
+
+        //Set Text
+        textObject.GetComponent<Text>().resizeTextForBestFit = _resizeTextForBestFit;
+        textObject.GetComponent<Text>().font = _font;
+        //Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
+        textObject.GetComponent<Text>().alignment = _textAnchor;
+        //TextAnchor.MiddleCenter;
+        textObject.GetComponent<Text>().fontStyle = _fontStyle;
+        //FontStyle.Bold;
+        textObject.GetComponent<Text>().color = _color;
+        textObject.GetComponent<Text>().text = _text;
+
+        return textObject;
     }
 }

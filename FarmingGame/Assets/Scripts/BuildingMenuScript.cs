@@ -5,11 +5,20 @@ using UnityEngine.UI;
 
 public class BuildingMenuScript : MonoBehaviour
 {
+    public static BuildingMenuScript instance;
+
     public GameObject buildPanel;
     public GameObject[] buildingsPrefabs;
     public Sprite[] buildingsSprites;
 
     private GameObject[] buildButtons;
+
+    void Awake()
+    {
+        if (instance == null)
+            instance = this;
+    }
+
     // Use this for initialization
     void Start ()
     {

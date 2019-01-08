@@ -41,7 +41,7 @@ public class CursorIdleState : CursorStates
 
     public void SecondButtonClick()
     {
-
+        CursorScript.instance.ChooseObject(null);
     }
 }
 
