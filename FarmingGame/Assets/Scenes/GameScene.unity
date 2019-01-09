@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 650957374}
   - component: {fileID: 650957376}
   - component: {fileID: 650957375}
+  - component: {fileID: 650957377}
   m_Layer: 5
   m_Name: PanelSelection
   m_TagString: Untagged
@@ -497,6 +498,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 650957373}
+--- !u!114 &650957377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650957373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6552ee95a452bdd4184c31bd532b6e48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionPanel: {fileID: 650957373}
+  selectionImage: {fileID: 1364727547}
+  selectionTxt: {fileID: 1954058659}
 --- !u!1 &1225560625
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +759,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1398482443}
   - component: {fileID: 1398482442}
+  - component: {fileID: 1398482444}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -775,6 +791,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1398482444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1398482441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29760d310cb297148a712241542eccf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1954058657
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public interface CursorStates
 {
@@ -65,12 +66,18 @@ public class CursorBuildState : CursorStates
 
     public void TileClick(TileScript tile)
     {
-        if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            TileManagerScript.instance.OcuppyTiles(building.gameObject, tile.X, tile.Z, building.sizeX, building.sizeZ);
-            building.Build(tile.transform.position);
-            building = null;
-            CursorScript.instance.ChangeState(new CursorIdleState(), null);
+            if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ) &&
+            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost))
+            {
+                ResourceManagerScript.instance.SubtractResources(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost);
+                ResourceManagerScript.instance.RefreshView();
+                TileManagerScript.instance.OcuppyTiles(building.gameObject, tile.X, tile.Z, building.sizeX, building.sizeZ);
+                building.Build(tile.transform.position);
+                building = null;
+                CursorScript.instance.ChangeState(new CursorIdleState(), null);
+            }
         }
     }
 
@@ -79,7 +86,8 @@ public class CursorBuildState : CursorStates
         if (building != null)
         {
             building.Move(tile.transform.position);
-            if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ))
+            if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ) &&
+            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost))
             {
                 building.HighlightOnOff(false);
             }

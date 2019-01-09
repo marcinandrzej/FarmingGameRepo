@@ -123,11 +123,8 @@ public class GuiScript : MonoBehaviour
         //Set Text
         textObject.GetComponent<Text>().resizeTextForBestFit = _resizeTextForBestFit;
         textObject.GetComponent<Text>().font = _font;
-        //Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
         textObject.GetComponent<Text>().alignment = _textAnchor;
-        //TextAnchor.MiddleCenter;
         textObject.GetComponent<Text>().fontStyle = _fontStyle;
-        //FontStyle.Bold;
         textObject.GetComponent<Text>().color = _color;
         textObject.GetComponent<Text>().text = _text;
 

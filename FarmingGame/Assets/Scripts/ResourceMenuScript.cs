@@ -23,7 +23,6 @@ public class ResourceMenuScript : MonoBehaviour
     void Start ()
     {
         SetUp();
-        UpdateResource(4, 124);
     }
 	
 	// Update is called once per frame
@@ -57,8 +56,11 @@ public class ResourceMenuScript : MonoBehaviour
         }
     }
 
-    public void UpdateResource(int resource, int count)
+    public void UpdateResources(Dictionary<RESOURCES, int> dict)
     {
-        resourcesTxt[resource].GetComponent<Text>().text = count.ToString();
+        for (int i = 0; i < resourcesTxt.Length; i++)
+        {
+            resourcesTxt[i].GetComponent<Text>().text = dict[(RESOURCES)i].ToString();
+        }
     }
 }

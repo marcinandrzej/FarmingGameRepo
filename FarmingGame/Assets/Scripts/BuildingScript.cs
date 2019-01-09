@@ -6,11 +6,15 @@ public class BuildingScript : MonoBehaviour
 {
     public int sizeX;
     public int sizeZ;
+    public string buildingName;
+    public string income;
+    public string outcome;
 
     public GameObject buildingView;
     private Renderer rend;
     private Color32 color;
     private Color32 highlightColor;
+    private bool highlighted;
 
     // Use this for initialization
     void Start ()
@@ -18,6 +22,7 @@ public class BuildingScript : MonoBehaviour
         rend = buildingView.GetComponentInChildren<Renderer>();
         color = rend.material.color;
         highlightColor = new Color32((byte)(color.r * 0.5f), (byte)(color.g * 0.5f), (byte)(color.b * 0.5f), color.a);
+        highlighted = false;
     }
 	
 	// Update is called once per frame
@@ -28,14 +33,15 @@ public class BuildingScript : MonoBehaviour
 
     public void HighlightOnOff(bool on)
     {
-        if (on)
+        if (on && highlighted != on)
         {
             rend.material.color = highlightColor;
         }
-        else
+        else if (!on && highlighted == on)
         {
             rend.material.color = color;
         }
+        highlighted = on;
     }
 
     public void Build(Vector3 position)
