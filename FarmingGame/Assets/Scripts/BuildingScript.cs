@@ -9,6 +9,7 @@ public class BuildingScript : MonoBehaviour
     public string buildingName;
     public string income;
     public string outcome;
+    public string description;
 
     public GameObject buildingView;
     private Renderer rend;

@@ -12,7 +12,8 @@ public enum RESOURCES
     WOOD = 5,
     STEEL = 6,
     LINEN = 7,
-    LEATHER = 8
+    LEATHER = 8,
+    SALT = 9
 }
 
 public class ResourceManagerScript : MonoBehaviour

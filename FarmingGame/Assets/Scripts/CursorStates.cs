@@ -53,6 +53,7 @@ public class CursorBuildState : CursorStates
     public void OnStateEnter(BuildingScript _building)
     {
         building = _building;
+        ResourceMenuScript.instance.UpdateCost(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost);
     }
 
     public void OnStateExit()
@@ -62,6 +63,7 @@ public class CursorBuildState : CursorStates
             building.DestroyBuilding();
             building = null;
         }
+        ResourceMenuScript.instance.HideCost();
     }
 
     public void TileClick(TileScript tile)

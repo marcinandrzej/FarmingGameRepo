@@ -13,6 +13,7 @@ public class BuildingCostScript : MonoBehaviour
     public int STEEL;
     public int LINEN ;
     public int LEATHER;
+    public int SALT;
 
     private Dictionary<RESOURCES, int> buildingCost;
 
@@ -57,5 +58,6 @@ public class BuildingCostScript : MonoBehaviour
         BuildingCost[RESOURCES.MEAT] = MEAT;
         BuildingCost[RESOURCES.STEEL] = STEEL;
         BuildingCost[RESOURCES.WOOD] = WOOD;
+        BuildingCost[RESOURCES.SALT] = SALT;
     }
 }
