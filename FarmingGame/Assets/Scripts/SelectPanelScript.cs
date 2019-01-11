@@ -31,6 +31,6 @@ public class SelectPanelScript : MonoBehaviour
     public void SelectionShow(BuildingScript building, Sprite img)
     {
         selectionImage.sprite = img;
-        selectionTxt.text = building.buildingName + "\nIn:" + building.income + "\nOut:" + building.outcome + "\n" + building.description;
+        selectionTxt.text = building.buildingName + "\n" + building.description;
     }
 }

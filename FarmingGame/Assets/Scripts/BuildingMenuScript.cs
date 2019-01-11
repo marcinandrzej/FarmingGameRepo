@@ -33,7 +33,7 @@ public class BuildingMenuScript : MonoBehaviour
 
     private void SetUp()
     {
-        buildButtons = GuiScript.instance.FillWithButtons(buildPanel, 4, buildingsSprites);
+        buildButtons = GuiScript.instance.FillWithButtons(buildPanel, 5, buildingsSprites);
 
         for (int i = 0; i < buildButtons.Length; i++)
         {

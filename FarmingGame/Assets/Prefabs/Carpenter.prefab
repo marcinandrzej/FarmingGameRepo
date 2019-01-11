@@ -9,75 +9,75 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1082696505133652}
+  m_RootGameObject: {fileID: 1020257738790358}
   m_IsPrefabParent: 1
---- !u!1 &1082696505133652
+--- !u!1 &1020257738790358
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4710013895818842}
-  - component: {fileID: 114431436579384144}
-  - component: {fileID: 114421876522182072}
+  - component: {fileID: 4666044192656432}
+  - component: {fileID: 114971637193606316}
+  - component: {fileID: 114400447487332588}
   m_Layer: 0
-  m_Name: HunterCabin
+  m_Name: Carpenter
   m_TagString: Untagged
   m_Icon: {fileID: -5765324120231101433, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1860911439407434
+--- !u!1 &1789104572662484
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4976925427412640}
-  - component: {fileID: 33525842212308782}
-  - component: {fileID: 23697499187296256}
+  - component: {fileID: 4602620688892990}
+  - component: {fileID: 33739415908653938}
+  - component: {fileID: 23767107887791328}
   m_Layer: 0
-  m_Name: HunterCabinCube
+  m_Name: CarpenterCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4710013895818842
+--- !u!4 &4602620688892990
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1082696505133652}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4976925427412640}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4976925427412640
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860911439407434}
+  m_GameObject: {fileID: 1789104572662484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0.1, z: 1}
   m_LocalScale: {x: 2, y: 0.2, z: 2}
   m_Children: []
-  m_Father: {fileID: 4710013895818842}
+  m_Father: {fileID: 4666044192656432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23697499187296256
+--- !u!4 &4666044192656432
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1020257738790358}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4602620688892990}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23767107887791328
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860911439407434}
+  m_GameObject: {fileID: 1789104572662484}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -106,42 +106,42 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33525842212308782
+--- !u!33 &33739415908653938
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1860911439407434}
+  m_GameObject: {fileID: 1789104572662484}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114421876522182072
+--- !u!114 &114400447487332588
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1082696505133652}
+  m_GameObject: {fileID: 1020257738790358}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  COINS_COST: -200
-  COINS_INCOME: 5
+  COINS_COST: -1000
+  COINS_INCOME: 50
   GRAIN: 0
   MEAT: 0
   COTTON: 0
   IRON_ORE: 0
   COAL: 0
-  WOOD: -1
-  STEEL: 0
+  WOOD: -4
+  STEEL: -1
   LINEN: 0
-  LEATHER: 2
-  SALT: -1
---- !u!114 &114431436579384144
+  LEATHER: -1
+  SALT: 0
+--- !u!114 &114971637193606316
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1082696505133652}
+  m_GameObject: {fileID: 1020257738790358}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cf9dccfa0a9cbb44a9b8d54e4c2398eb, type: 3}
@@ -149,8 +149,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 2
   sizeZ: 2
-  buildingName: Hunter cabin
-  income: Salt
-  outcome: Leather
+  buildingName: Carpenter
   description: 
-  buildingView: {fileID: 1860911439407434}
+  buildingView: {fileID: 1789104572662484}

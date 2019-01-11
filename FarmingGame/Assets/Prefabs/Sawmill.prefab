@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  COINS_COST: -100
+  COINS_INCOME: 10
   GRAIN: 0
   MEAT: 0
   COTTON: 0
@@ -133,6 +135,7 @@ MonoBehaviour:
   STEEL: 0
   LINEN: 0
   LEATHER: 0
+  SALT: 0
 --- !u!114 &114957167974248084
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,4 +152,5 @@ MonoBehaviour:
   buildingName: Sawmill
   income: None
   outcome: Wood
+  description: 
   buildingView: {fileID: 1484394196119852}

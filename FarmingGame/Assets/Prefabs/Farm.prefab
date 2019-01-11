@@ -129,6 +129,7 @@ MonoBehaviour:
   buildingName: Farm
   income: None
   outcome: Grain
+  description: 
   buildingView: {fileID: 1136429613434676}
 --- !u!114 &114438539718533738
 MonoBehaviour:
@@ -141,12 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GRAIN: 0
+  COINS_COST: -100
+  COINS_INCOME: 5
+  GRAIN: 3
   MEAT: 0
   COTTON: 0
   IRON_ORE: 0
   COAL: 0
-  WOOD: 3
+  WOOD: -1
   STEEL: 0
   LINEN: 0
   LEATHER: 0
+  SALT: 0

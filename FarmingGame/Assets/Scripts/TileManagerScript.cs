@@ -65,7 +65,7 @@ public class TileManagerScript : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        SetUp(10,10);
+        SetUp(20,20);
     }
 	
 	// Update is called once per frame

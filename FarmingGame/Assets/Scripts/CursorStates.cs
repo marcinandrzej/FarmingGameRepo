@@ -53,7 +53,8 @@ public class CursorBuildState : CursorStates
     public void OnStateEnter(BuildingScript _building)
     {
         building = _building;
-        ResourceMenuScript.instance.UpdateCost(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost);
+        ResourceMenuScript.instance.UpdateCost(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost,
+            building.gameObject.GetComponent<BuildingCostScript>().COINS_COST);
     }
 
     public void OnStateExit()
@@ -71,9 +72,12 @@ public class CursorBuildState : CursorStates
         if (!EventSystem.current.IsPointerOverGameObject())
         {
             if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ) &&
-            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost))
+            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost,
+            building.gameObject.GetComponent<BuildingCostScript>().COINS_COST))
             {
-                ResourceManagerScript.instance.SubtractResources(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost);
+                ResourceManagerScript.instance.AddResources(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost);
+                ResourceManagerScript.instance.Coins += building.gameObject.GetComponent<BuildingCostScript>().COINS_COST;
+                ResourceManagerScript.instance.Income += building.gameObject.GetComponent<BuildingCostScript>().COINS_INCOME;
                 ResourceManagerScript.instance.RefreshView();
                 TileManagerScript.instance.OcuppyTiles(building.gameObject, tile.X, tile.Z, building.sizeX, building.sizeZ);
                 building.Build(tile.transform.position);
@@ -89,7 +93,8 @@ public class CursorBuildState : CursorStates
         {
             building.Move(tile.transform.position);
             if (building != null && TileManagerScript.instance.CanBeBuild(tile.X, tile.Z, building.sizeX, building.sizeZ) &&
-            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost))
+            ResourceManagerScript.instance.CanBeBuild(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost,
+            building.gameObject.GetComponent<BuildingCostScript>().COINS_COST))
             {
                 building.HighlightOnOff(false);
             }

@@ -124,15 +124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  COINS_COST: -250
+  COINS_INCOME: 20
   GRAIN: 0
   MEAT: 0
-  COTTON: 0
+  COTTON: 2
   IRON_ORE: 0
   COAL: 0
-  WOOD: 10
+  WOOD: -2
   STEEL: 0
   LINEN: 0
   LEATHER: 0
+  SALT: -1
 --- !u!114 &114699827416310714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,4 +152,5 @@ MonoBehaviour:
   buildingName: Plantation
   income: None
   outcome: Cotton
+  description: 
   buildingView: {fileID: 1031541073994912}

@@ -124,15 +124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  COINS_COST: -400
+  COINS_INCOME: 20
   GRAIN: 0
   MEAT: 0
-  COTTON: 0
+  COTTON: -1
   IRON_ORE: 0
   COAL: 0
-  WOOD: 20
+  WOOD: -1
   STEEL: 0
-  LINEN: 0
+  LINEN: 1
   LEATHER: 0
+  SALT: 0
 --- !u!114 &114628355642686554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,4 +152,5 @@ MonoBehaviour:
   buildingName: Weaver
   income: Cotton
   outcome: Linen
+  description: 
   buildingView: {fileID: 1741942011083152}

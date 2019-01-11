@@ -22,6 +22,49 @@ public class ResourceManagerScript : MonoBehaviour
 
     private Dictionary<RESOURCES, int> resources;
 
+    private int coinsLimit;
+    private int coins;
+    private int income;
+
+    public int Coins
+    {
+        get
+        {
+            return coins;
+        }
+
+        set
+        {
+            coins = value;
+        }
+    }
+
+    public int Income
+    {
+        get
+        {
+            return income;
+        }
+
+        set
+        {
+            income = value;
+        }
+    }
+
+    public int CoinsLimit
+    {
+        get
+        {
+            return coinsLimit;
+        }
+
+        set
+        {
+            coinsLimit = value;
+        }
+    }
+
     void Awake()
     {
         if (instance == null)
@@ -42,14 +85,17 @@ public class ResourceManagerScript : MonoBehaviour
 
     public void SetUp()
     {
+        CoinsLimit = 1000;
+        Coins = 500;
+        Income = 0;
         resources = new Dictionary<RESOURCES, int>();
         int count = System.Enum.GetNames(typeof(RESOURCES)).Length;
         for (int i = 0; i < count; i++)
         {
             resources[(RESOURCES)i] = 0;
         }
-        resources[RESOURCES.WOOD] = 10;
-        Invoke("RefreshView", 0.1f);
+        Invoke("RefreshCoins", 0.1f);
+        InvokeRepeating("CollectTaxes", 1, 10);
     }
 
     public void AddResource(RESOURCES res, int quantity)
@@ -67,10 +113,17 @@ public class ResourceManagerScript : MonoBehaviour
         return resources;
     }
 
+    public void AddResources(Dictionary<RESOURCES, int> res)
+    {
+        int lenght = resources.Count;
+        for (int i = 0; i < lenght; i++)
+        {
+            resources[(RESOURCES)i] += res[(RESOURCES)i];
+        }
+    }
+
     public void SubtractResources(Dictionary<RESOURCES, int> res)
     {
-        if (res == null)
-            Debug.Log("Empty");
         int lenght = resources.Count;
         for (int i = 0; i < lenght; i++)
         {
@@ -78,19 +131,47 @@ public class ResourceManagerScript : MonoBehaviour
         }
     }
 
-    public bool CanBeBuild(Dictionary<RESOURCES, int> cost)
+    public bool CanBeBuild(Dictionary<RESOURCES, int> cost, int coinsCost)
     {
+        if (Coins + coinsCost < 0)
+            return false;
         int lenght = System.Enum.GetValues(typeof(RESOURCES)).Length;
         for (int i = 0; i < lenght; i++)
         {
-            if (resources[(RESOURCES)i] < cost[(RESOURCES)i])
+            if (resources[(RESOURCES)i] + cost[(RESOURCES)i] < 0)
                 return false;
         }
         return true;
     }
 
+    public bool CanBeRemoved(Dictionary<RESOURCES, int> cost)
+    {
+        int lenght = System.Enum.GetValues(typeof(RESOURCES)).Length;
+        for (int i = 0; i < lenght; i++)
+        {
+            if (resources[(RESOURCES)i] - cost[(RESOURCES)i] < 0)
+                return false;
+        }
+        return true;
+    }
+
+    private void CollectTaxes()
+    {
+        if (Income != 0 && Coins < CoinsLimit)
+        {
+            Coins = Mathf.Min(CoinsLimit, (Coins + Income));
+            RefreshCoins();
+        }
+    }
+
     public void RefreshView()
     {
         ResourceMenuScript.instance.UpdateResources(resources);
+        ResourceMenuScript.instance.UpdateCoins(Coins);
+    }
+
+    public void RefreshCoins()
+    {
+        ResourceMenuScript.instance.UpdateCoins(Coins);
     }
 }

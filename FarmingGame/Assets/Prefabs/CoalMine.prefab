@@ -124,15 +124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c99cfff2348af49b6a510193879a93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  COINS_COST: -250
+  COINS_INCOME: 10
   GRAIN: 0
-  MEAT: 0
+  MEAT: -1
   COTTON: 0
   IRON_ORE: 0
-  COAL: 0
-  WOOD: 5
+  COAL: 1
+  WOOD: -1
   STEEL: 0
   LINEN: 0
   LEATHER: 0
+  SALT: 0
 --- !u!114 &114831841114065826
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,4 +152,5 @@ MonoBehaviour:
   buildingName: Coal Mine
   income: Meat
   outcome: Coal
+  description: 
   buildingView: {fileID: 1824454966277530}

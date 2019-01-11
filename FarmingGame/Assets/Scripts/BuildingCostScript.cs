@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BuildingCostScript : MonoBehaviour
 {
+    public int COINS_COST;
+    public int COINS_INCOME;
     public int GRAIN;
     public int MEAT;
     public int COTTON;
