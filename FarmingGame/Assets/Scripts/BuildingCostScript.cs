@@ -17,7 +17,10 @@ public class BuildingCostScript : MonoBehaviour
     public int LEATHER;
     public int SALT;
 
+
+    private int level;
     private Dictionary<RESOURCES, int> buildingCost;
+    private Dictionary<RESOURCES, int> upgradeCost;
 
     public Dictionary<RESOURCES, int> BuildingCost
     {
@@ -29,6 +32,32 @@ public class BuildingCostScript : MonoBehaviour
         set
         {
             buildingCost = value;
+        }
+    }
+
+    public Dictionary<RESOURCES, int> UpgradeCost
+    {
+        get
+        {
+            return upgradeCost;
+        }
+
+        set
+        {
+            upgradeCost = value;
+        }
+    }
+
+    public int Level
+    {
+        get
+        {
+            return level;
+        }
+
+        set
+        {
+            level = value;
         }
     }
 
@@ -50,6 +79,8 @@ public class BuildingCostScript : MonoBehaviour
 
     public void SetUp()
     {
+        Level = 1;
+
         BuildingCost = new Dictionary<RESOURCES, int>();
         BuildingCost[RESOURCES.COAL] = COAL;
         BuildingCost[RESOURCES.COTTON] = COTTON;
@@ -61,5 +92,37 @@ public class BuildingCostScript : MonoBehaviour
         BuildingCost[RESOURCES.STEEL] = STEEL;
         BuildingCost[RESOURCES.WOOD] = WOOD;
         BuildingCost[RESOURCES.SALT] = SALT;
+
+        UpgradeCost = new Dictionary<RESOURCES, int>();
+        for (int i = 0; i < BuildingCost.Count; i++)
+        {
+            if (BuildingCost[(RESOURCES)i] > 0)
+            {
+                UpgradeCost[(RESOURCES)i] = 1;
+            }
+            else
+            {
+                UpgradeCost[(RESOURCES)i] = 0;
+            }
+        }
+    }
+
+    public void LevelUp()
+    {
+        Level++;
+        COINS_COST *= 2;
+        ResourceManagerScript.instance.Coins += COINS_COST;
+        ResourceManagerScript.instance.Income += COINS_INCOME;
+        COINS_INCOME *= 2;
+        for (int i = 0; i < BuildingCost.Count; i++)
+        {
+            BuildingCost[(RESOURCES)i] += UpgradeCost[(RESOURCES)i];
+            if (UpgradeCost[(RESOURCES)i] != 0)
+            {
+                ResourceManagerScript.instance.AddResource((RESOURCES)i, UpgradeCost[(RESOURCES)i]);
+            }
+        }
+        ResourceManagerScript.instance.RefreshView();
+        ResourceManagerScript.instance.RefreshCoins();
     }
 }

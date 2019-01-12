@@ -8,7 +8,7 @@ public class CursorScript : MonoBehaviour
 
     public CursorStates cursorState;
 
-    private GameObject choosenObject;
+    public GameObject choosenObject;
 
     public void ChangeState(CursorStates newState, BuildingScript building)
     {
@@ -32,12 +32,11 @@ public class CursorScript : MonoBehaviour
     {
         if (instance == null)
             instance = this;
-        ChangeState(new CursorIdleState(), null);
     }
 	// Use this for initialization
 	void Start ()
     {
-
+        ChangeState(new CursorIdleState(), null);
     }
 	
 	// Update is called once per frame

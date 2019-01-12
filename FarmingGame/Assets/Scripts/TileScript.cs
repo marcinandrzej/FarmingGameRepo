@@ -84,6 +84,7 @@ public class TileScript : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
+        onTile = null;
         rend = gameObject.GetComponentInChildren<Renderer>();
         color = rend.material.color;
         highlightColor = new Color32((byte)(color.r * 0.5f), (byte)(color.g * 0.5f), (byte)(color.b * 0.5f), color.a);

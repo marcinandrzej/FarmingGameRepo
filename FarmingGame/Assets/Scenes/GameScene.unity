@@ -524,6 +524,8 @@ MonoBehaviour:
   selectionPanel: {fileID: 650957373}
   selectionImage: {fileID: 1364727547}
   selectionTxt: {fileID: 1954058659}
+  upgradeButton: {fileID: 967459719}
+  destroyButton: {fileID: 1397187091}
 --- !u!1 &967459717
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,6 +710,7 @@ GameObject:
   - component: {fileID: 1279619552}
   - component: {fileID: 1279619551}
   - component: {fileID: 1279619555}
+  - component: {fileID: 1279619556}
   m_Layer: 5
   m_Name: CanvasGame
   m_TagString: Untagged
@@ -804,6 +807,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d669bdfaff22c954f89eef418db1b263, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1279619556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1279619550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5a344c6a56283448deee942a205414, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectionPanel: {fileID: 650957373}
+  buildingPanel: {fileID: 246372976}
+  resouurcePanel: {fileID: 637379296}
 --- !u!1 &1364727545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1010,6 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f6a5e23a7335614d87dbf49902054f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  choosenObject: {fileID: 0}
 --- !u!4 &1398482443
 Transform:
   m_ObjectHideFlags: 0

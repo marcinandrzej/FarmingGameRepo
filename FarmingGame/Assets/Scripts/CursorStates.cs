@@ -15,9 +15,12 @@ public interface CursorStates
 
 public class CursorIdleState : CursorStates
 {
+    BuildingScript building;
     public void OnStateEnter(BuildingScript _building)
     {
         CursorScript.instance.ChooseObject(null);
+        building = _building;
+        UIManagerScript.instance.selectionPanel.SetActive(false);
     }
 
     public void OnStateExit()
@@ -27,7 +30,22 @@ public class CursorIdleState : CursorStates
 
     public void TileClick(TileScript tile)
     {
-        CursorScript.instance.ChooseObject(tile.GetObject());
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            CursorScript.instance.ChooseObject(tile.GetObject());
+            if (tile.GetObject() != null)
+            {
+                building = tile.GetObject().GetComponent<BuildingScript>();
+                SelectPanelScript.instance.TurnButtonsOnOff(true);
+                UIManagerScript.instance.selectionPanel.SetActive(true);
+                SelectPanelScript.instance.SelectionShow(building, building.Img);
+            }
+            else
+            {
+                building = null;
+                UIManagerScript.instance.selectionPanel.SetActive(false);
+            }
+        }
     }
 
     public void TileEnter(TileScript tile)
@@ -43,6 +61,8 @@ public class CursorIdleState : CursorStates
     public void SecondButtonClick()
     {
         CursorScript.instance.ChooseObject(null);
+        building = null;
+        UIManagerScript.instance.selectionPanel.SetActive(false);
     }
 }
 
@@ -55,6 +75,8 @@ public class CursorBuildState : CursorStates
         building = _building;
         ResourceMenuScript.instance.UpdateCost(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost,
             building.gameObject.GetComponent<BuildingCostScript>().COINS_COST);
+        UIManagerScript.instance.selectionPanel.SetActive(true);
+        SelectPanelScript.instance.TurnButtonsOnOff(false);
     }
 
     public void OnStateExit()

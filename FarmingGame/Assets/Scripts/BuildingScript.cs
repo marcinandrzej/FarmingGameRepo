@@ -13,6 +13,20 @@ public class BuildingScript : MonoBehaviour
     private Renderer rend;
     private Color32 color;
     private Color32 highlightColor;
+    private Sprite img;
+
+    public Sprite Img
+    {
+        get
+        {
+            return img;
+        }
+
+        set
+        {
+            img = value;
+        }
+    }
 
     // Use this for initialization
     void Start ()
