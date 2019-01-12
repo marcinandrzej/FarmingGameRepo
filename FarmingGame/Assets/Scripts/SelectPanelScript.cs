@@ -39,6 +39,9 @@ public class SelectPanelScript : MonoBehaviour
                 CursorScript.instance.GetChoosenObject().GetComponent<BuildingCostScript>().COINS_COST * 2))
             {
                 CursorScript.instance.GetChoosenObject().GetComponent<BuildingCostScript>().LevelUp();
+                ResourceMenuScript.instance.UpdateCost(
+                    CursorScript.instance.GetChoosenObject().GetComponent<BuildingCostScript>().UpgradeCost,
+                CursorScript.instance.GetChoosenObject().GetComponent<BuildingCostScript>().COINS_COST * 2);
             }
         });
     }
