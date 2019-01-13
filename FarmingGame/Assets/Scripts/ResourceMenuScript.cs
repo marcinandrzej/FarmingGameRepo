@@ -77,11 +77,10 @@ public class ResourceMenuScript : MonoBehaviour
         resourcesTxt[resourcesTxt.Length - 1].GetComponent<Text>().text = coins.ToString();
     }
 
-    public void UpdateCost(Dictionary<RESOURCES, int> dict, int coins)
+    public void UpdateCost(Dictionary<RESOURCES, int> dict, int coins, bool reverse)
     {
         for (int i = 0; i < resourceCostTxt.Length - 1; i++)
         {
-            resourceCostTxt[i].GetComponent<Text>().text = dict[(RESOURCES)i].ToString();
             if (dict[(RESOURCES)i] == 0)
             {
                 resourceCostTxt[i].SetActive(false);
@@ -90,16 +89,42 @@ public class ResourceMenuScript : MonoBehaviour
             {
                 if (dict[(RESOURCES)i] > 0)
                 {
-                    resourceCostTxt[i].GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+                    if (!reverse)
+                    {
+                        resourceCostTxt[i].GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+                        resourceCostTxt[i].GetComponent<Text>().text = dict[(RESOURCES)i].ToString();
+                    }
+                    else
+                    {
+                        resourceCostTxt[i].GetComponent<Text>().color = new Color32(255, 0, 0, 255);
+                        resourceCostTxt[i].GetComponent<Text>().text = (-dict[(RESOURCES)i]).ToString();
+                    }
                 }
                 else
                 {
-                    resourceCostTxt[i].GetComponent<Text>().color = new Color32(255, 0, 0, 255);
+                    if (!reverse)
+                    {
+                        resourceCostTxt[i].GetComponent<Text>().color = new Color32(255, 0, 0, 255);
+                        resourceCostTxt[i].GetComponent<Text>().text = dict[(RESOURCES)i].ToString();
+                    }
+                    else
+                    {
+                        resourceCostTxt[i].GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+                        resourceCostTxt[i].GetComponent<Text>().text = (-dict[(RESOURCES)i]).ToString();
+                    }
                 }
                 resourceCostTxt[i].SetActive(true);
             }
         }
         resourceCostTxt[resourceCostTxt.Length - 1].SetActive(true);
+        if (coins > 0)
+        {
+            resourceCostTxt[resourceCostTxt.Length - 1].GetComponent<Text>().color = new Color32(0, 255, 0, 255);
+        }
+        else
+        {
+            resourceCostTxt[resourceCostTxt.Length - 1].GetComponent<Text>().color = new Color32(255, 0, 0, 255);
+        }
         resourceCostTxt[resourceCostTxt.Length - 1].GetComponent<Text>().text = coins.ToString();
     }
 

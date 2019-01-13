@@ -19,6 +19,8 @@ public class BuildingCostScript : MonoBehaviour
 
 
     private int level;
+    private int refundCost;
+    private int incomeRise;
     private Dictionary<RESOURCES, int> buildingCost;
     private Dictionary<RESOURCES, int> upgradeCost;
 
@@ -61,6 +63,19 @@ public class BuildingCostScript : MonoBehaviour
         }
     }
 
+    public int RefundCost
+    {
+        get
+        {
+            return refundCost;
+        }
+
+        set
+        {
+            refundCost = value;
+        }
+    }
+
     void Awake()
     {
         SetUp();
@@ -80,7 +95,8 @@ public class BuildingCostScript : MonoBehaviour
     public void SetUp()
     {
         Level = 1;
-
+        RefundCost = -COINS_COST;
+        incomeRise = COINS_INCOME;
         BuildingCost = new Dictionary<RESOURCES, int>();
         BuildingCost[RESOURCES.COAL] = COAL;
         BuildingCost[RESOURCES.COTTON] = COTTON;
@@ -109,11 +125,10 @@ public class BuildingCostScript : MonoBehaviour
 
     public void LevelUp()
     {
-        Level++;
         COINS_COST *= 2;
         ResourceManagerScript.instance.Coins += COINS_COST;
         ResourceManagerScript.instance.Income += COINS_INCOME;
-        COINS_INCOME *= 2;
+        COINS_INCOME += incomeRise;
         for (int i = 0; i < BuildingCost.Count; i++)
         {
             BuildingCost[(RESOURCES)i] += UpgradeCost[(RESOURCES)i];
@@ -122,7 +137,44 @@ public class BuildingCostScript : MonoBehaviour
                 ResourceManagerScript.instance.AddResource((RESOURCES)i, UpgradeCost[(RESOURCES)i]);
             }
         }
+        UpdateUpgradeCost(Level);
+        Level++;
         ResourceManagerScript.instance.RefreshView();
         ResourceManagerScript.instance.RefreshCoins();
+    }
+
+    public void DestroyBuilding()
+    {
+        ResourceManagerScript.instance.Income -= COINS_INCOME;
+        for (int i = 0; i < BuildingCost.Count; i++)
+        {
+            if (BuildingCost[(RESOURCES)i] != 0)
+            {
+                ResourceManagerScript.instance.SubResource((RESOURCES)i, BuildingCost[(RESOURCES)i]);
+            }
+        }
+        ResourceManagerScript.instance.AddCoins(RefundCost);
+        ResourceManagerScript.instance.RefreshView();
+        ResourceManagerScript.instance.RefreshCoins();
+    }
+
+    public void UpdateUpgradeCost(int lvl)
+    {
+        //UpgradeCost = new Dictionary<RESOURCES, int>();
+        for (int i = 0; i < BuildingCost.Count; i++)
+        {
+            if (BuildingCost[(RESOURCES)i] > 0)
+            {
+                UpgradeCost[(RESOURCES)i] = 1;
+            }
+            else if(BuildingCost[(RESOURCES)i] < 0)
+            {
+                UpgradeCost[(RESOURCES)i] = -lvl%2;
+            }
+            else
+            {
+                UpgradeCost[(RESOURCES)i] = 0;
+            }
+        }
     }
 }

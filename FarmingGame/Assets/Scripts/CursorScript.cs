@@ -45,6 +45,11 @@ public class CursorScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             cursorState.SecondButtonClick();
-        }		
-	}
+        }
+
+        if (Input.GetMouseButtonDown(2))
+        {
+            cursorState.ThirdButtonClick();
+        }
+    }
 }

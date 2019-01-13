@@ -11,6 +11,7 @@ public interface CursorStates
     void TileExit(TileScript tile);
     void TileClick(TileScript tile);
     void SecondButtonClick();
+    void ThirdButtonClick();
 }
 
 public class CursorIdleState : CursorStates
@@ -36,9 +37,12 @@ public class CursorIdleState : CursorStates
             if (tile.GetObject() != null)
             {
                 building = tile.GetObject().GetComponent<BuildingScript>();
-                SelectPanelScript.instance.TurnButtonsOnOff(true);
-                UIManagerScript.instance.selectionPanel.SetActive(true);
-                SelectPanelScript.instance.SelectionShow(building, building.Img);
+                if (building != null)
+                {
+                    SelectPanelScript.instance.TurnButtonsOnOff(true);
+                    UIManagerScript.instance.selectionPanel.SetActive(true);
+                    SelectPanelScript.instance.SelectionShow(building, building.Img);
+                }
             }
             else
             {
@@ -64,6 +68,11 @@ public class CursorIdleState : CursorStates
         building = null;
         UIManagerScript.instance.selectionPanel.SetActive(false);
     }
+
+    public void ThirdButtonClick()
+    {
+
+    }
 }
 
 public class CursorBuildState : CursorStates
@@ -74,7 +83,7 @@ public class CursorBuildState : CursorStates
     {
         building = _building;
         ResourceMenuScript.instance.UpdateCost(building.gameObject.GetComponent<BuildingCostScript>().BuildingCost,
-            building.gameObject.GetComponent<BuildingCostScript>().COINS_COST);
+            building.gameObject.GetComponent<BuildingCostScript>().COINS_COST, false);
         UIManagerScript.instance.selectionPanel.SetActive(true);
         SelectPanelScript.instance.TurnButtonsOnOff(false);
     }
@@ -133,6 +142,11 @@ public class CursorBuildState : CursorStates
     }
 
     public void SecondButtonClick()
+    {
+        CursorScript.instance.ChangeState(new CursorIdleState(), null);
+    }
+
+    public void ThirdButtonClick()
     {
         if (building != null)
         {

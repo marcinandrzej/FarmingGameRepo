@@ -85,7 +85,7 @@ public class ResourceManagerScript : MonoBehaviour
 
     public void SetUp()
     {
-        CoinsLimit = 1000;
+        CoinsLimit = 5000;
         Coins = 500;
         Income = 0;
         resources = new Dictionary<RESOURCES, int>();
@@ -162,6 +162,11 @@ public class ResourceManagerScript : MonoBehaviour
             Coins = Mathf.Min(CoinsLimit, (Coins + Income));
             RefreshCoins();
         }
+    }
+
+    public void AddCoins(int _coins)
+    {
+        Coins = Mathf.Min(Coins + _coins, CoinsLimit);
     }
 
     public void RefreshView()
